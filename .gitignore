@@ -87,3 +87,7 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 
+# eclipse recommenders
+.recommenders/
+
+
