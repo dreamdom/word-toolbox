@@ -1,45 +1,36 @@
 package com.androiddom.wordtoolbox;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Random;
 
 import com.androiddom.wordtoolbox.util.DictionaryUtils;
 
-/**
- * A class to maintain a collection of words.
- *
- */
-public class Dictionary {
+public class RandomDictionary extends Dictionary {
 	
+	private List<String> wordList;
+	private Random random;
 	
-	protected Set<String> words;
-	
-	/**
-	 * A protected constructor for the Dictionary object.
-	 */
-	Dictionary() {
-		words = new HashSet<String>();
+	RandomDictionary() {
+		super();
+		wordList = new ArrayList<String>();
+		random = new Random();
 	}
 	
-	public boolean hasWord(String word) {
-		return words.contains(word);
+	public String getRandomWord() {
+		int index = random.nextInt(wordList.size());
+		return wordList.get(index);
 	}
 	
-	public int numberOfWords() {
-		return words.size();
-	}
-	
-	/**
-	 * A class used to Build Dictionary objects.
-	 *
-	 */
 	public static class Builder {
-		
+
 		private File file;
 		private Dictionary baseDictionary;
 		
-		private Dictionary dictionary;
+		private RandomDictionary dictionary;
 		
 		public Builder(File file) {
 			this.file = file;
@@ -49,10 +40,10 @@ public class Dictionary {
 			this.baseDictionary = baseDictionary;
 		}
 		
-		public Dictionary build() {
+		public RandomDictionary build() {
 			
 			// Create a new instance of a dictionary object
-			dictionary = new Dictionary();
+			dictionary = new RandomDictionary();
 			
 			// Load the dictionary from file or an existing dictionary
 			if(file != null) {
@@ -64,6 +55,10 @@ public class Dictionary {
 			// Process any filters added to the builder
 			processFilters();
 			
+			// Add all the words to the list, and shuffle it
+			dictionary.wordList.addAll(dictionary.words);
+			Collections.shuffle(dictionary.wordList);
+			
 			// Return the process dictionary
 			return dictionary;
 		}
@@ -73,5 +68,7 @@ public class Dictionary {
 			// TODO: Add code here
 		}
 		
+
 	}
+
 }
