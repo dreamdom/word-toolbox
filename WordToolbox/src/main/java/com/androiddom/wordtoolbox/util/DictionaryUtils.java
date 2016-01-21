@@ -31,6 +31,8 @@ public class DictionaryUtils {
 					}
 				}
 			}
+			
+			br.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -11,10 +11,9 @@ public class MainClass {
 		System.out.println(testDictionary.hasWord("the"));
 		System.out.println(testDictionary.hasWord("asdf"));
 		
-		RandomDictionary random = new RandomDictionary.Builder(testDictionary).build();
+		System.out.println(testDictionary.getRandomWord());
+		System.out.println(testDictionary.getRandomWord());
 		
-		System.out.println(random.getRandomWord());
-		System.out.println(random.getRandomWord());
 		
 	}
 

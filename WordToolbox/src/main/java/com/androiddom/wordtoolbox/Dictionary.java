@@ -1,7 +1,11 @@
 package com.androiddom.wordtoolbox;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import com.androiddom.wordtoolbox.util.DictionaryUtils;
@@ -13,13 +17,17 @@ import com.androiddom.wordtoolbox.util.DictionaryUtils;
 public class Dictionary {
 	
 	
-	protected Set<String> words;
+	private Set<String> words;
+	private List<String> wordList;
+	private Random random;
 	
 	/**
-	 * A protected constructor for the Dictionary object.
+	 * A private constructor for the Dictionary object.
 	 */
-	Dictionary() {
+	private Dictionary() {
 		words = new HashSet<String>();
+		wordList = new ArrayList<String>();
+		random = new Random();
 	}
 	
 	public boolean hasWord(String word) {
@@ -28,6 +36,14 @@ public class Dictionary {
 	
 	public int numberOfWords() {
 		return words.size();
+	}
+	
+	public String getRandomWord() {
+		if(wordList.size()==0)
+			return null;
+		
+		int index = random.nextInt(wordList.size());
+		return wordList.get(index);
 	}
 	
 	/**
@@ -63,6 +79,13 @@ public class Dictionary {
 			
 			// Process any filters added to the builder
 			processFilters();
+			
+			// Add all the words to the list, and shuffle it
+			dictionary.wordList.addAll(dictionary.words);
+			Collections.shuffle(dictionary.wordList);
+			
+			// null out the reference to the base dictionary
+			this.baseDictionary = null;
 			
 			// Return the process dictionary
 			return dictionary;
