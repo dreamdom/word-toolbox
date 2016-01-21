@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 
 import com.androiddom.wordtoolbox.util.DictionaryUtils;
+import com.androiddom.wordtoolbox.util.StringUtils;
 import com.androiddom.wordtoolbox.util.WordComplexity;
 
 /**
@@ -76,6 +77,16 @@ public class Dictionary {
 			});
 			return this;
 		}
+		
+		public Builder containsCount(final String contains, final int count) {
+			ruleList.add(new Rule(){
+				@Override
+				public boolean evaluate(String input) {
+					return (StringUtils.substringCount(input, contains) == count);
+				}
+			});
+			return this;
+		}
 
 		public Builder startsWith(final String startsWith) {
 			ruleList.add(new Rule() {
@@ -124,6 +135,21 @@ public class Dictionary {
 					return !input.contains("'s");
 				}
 			});
+			return this;
+		}
+		
+		public Builder anagrams(final String input) {
+			ruleList.add(new Rule(){
+				@Override
+				public boolean evaluate(String evalInput) {
+					return StringUtils.isAnagram(input, evalInput);
+				}
+			});
+			return this;
+		}
+		
+		public Builder addRule(Rule rule) {
+			ruleList.add(rule);
 			return this;
 		}
 

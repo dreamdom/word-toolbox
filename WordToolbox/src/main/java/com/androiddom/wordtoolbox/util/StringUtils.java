@@ -66,5 +66,42 @@ public class StringUtils {
 		
 		return roughSyllableCount;
 	}
+	
+	public static int substringCount(String input, String substring) {
+		int curCount = 0;
+		int curIndex = 0;
+		
+		while((curIndex = input.indexOf(substring, curIndex)) != -1){
+			curCount++;
+			curIndex++;
+		}
+		
+		return curCount;
+	}
+	
+	public static boolean isAnagram(String input, String test) {
+		if(test.equals(input))
+			return false;
+		
+		if(test.length() != input.length())
+			return false;
+		
+		Set<String> letterSet = new HashSet<String>();
+		for(int i=0; i<input.length(); i++) {
+			String curChar = input.substring(i, i+1);
+			if(!letterSet.contains(curChar)) {
+				int substringCount = StringUtils.substringCount(input, curChar);
+				int testCount = StringUtils.substringCount(test, curChar);
+				
+				if(substringCount != testCount)
+					return false;
+				
+				letterSet.add(curChar);
+			}
+		}
+		
+		return true;
+		
+	}
 
 }

@@ -17,6 +17,22 @@ public class MainClass {
 		System.out.println(test2.getRandomWord());
 		
 		
+		Dictionary test3 = new Dictionary.Builder(testDictionary).complexity(26).build();
+		System.out.println(test3.getRandomWord());
+		System.out.println(test3.getRandomWord());
+		
+		boolean anagramFound = false;
+		while(!anagramFound) {
+			String input = testDictionary.getRandomWord();
+			Dictionary anagramDict = new Dictionary.Builder(testDictionary).anagrams(input).build();
+			if(anagramDict.numberOfWords() > 0) {
+				System.out.println(input + " | " + anagramDict.getRandomWord());
+				anagramFound = true;
+			}
+		}
+		
+		
+		
 	}
 
 }
