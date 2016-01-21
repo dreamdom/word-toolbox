@@ -11,8 +11,10 @@ public class MainClass {
 		System.out.println(testDictionary.hasWord("the"));
 		System.out.println(testDictionary.hasWord("asdf"));
 		
-		System.out.println(testDictionary.getRandomWord());
-		System.out.println(testDictionary.getRandomWord());
+		Dictionary test2 = new Dictionary.Builder(testDictionary).complexity(14).contains("j").filterPossesive().build();
+		
+		System.out.println(test2.getRandomWord());
+		System.out.println(test2.getRandomWord());
 		
 		
 	}
