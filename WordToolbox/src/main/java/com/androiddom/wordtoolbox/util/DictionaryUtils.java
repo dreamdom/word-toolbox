@@ -12,9 +12,18 @@ import java.util.Set;
  *
  */
 public class DictionaryUtils {
-	
+
 	private static final String SIMPLE_DICTIONARY_START = "---";
-	
+
+	/**
+	 * Method to load a file in the Simple Dictionary format to a Set of
+	 * Strings.
+	 * 
+	 * @param file
+	 *            The file to load
+	 * @param words
+	 *            The Set to add the words from the file to.
+	 */
 	public static void loadSimpleFileToSet(File file, Set<String> words) {
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			boolean addToSet = false;
@@ -31,7 +40,7 @@ public class DictionaryUtils {
 					}
 				}
 			}
-			
+
 			br.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
