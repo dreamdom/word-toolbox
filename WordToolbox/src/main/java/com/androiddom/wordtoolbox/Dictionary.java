@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
@@ -219,6 +220,24 @@ public class Dictionary {
 		}
 
 		/**
+		 * A rule that words in the dictionary must be equal to or longer than a
+		 * specific length.
+		 * 
+		 * @param length
+		 *            The specific length words must be equal to, or longer.
+		 * @return The Builder object.
+		 */
+		public Builder minLength(final int length) {
+			ruleList.add(new Rule() {
+				@Override
+				public boolean evaluate(String input) {
+					return (input.length() >= length);
+				}
+			});
+			return this;
+		}
+
+		/**
 		 * A rule that words in the dictionary must be of a specific complexity.
 		 * 
 		 * @param complexity
@@ -245,6 +264,16 @@ public class Dictionary {
 				@Override
 				public boolean evaluate(String input) {
 					return !input.contains("'s");
+				}
+			});
+			return this;
+		}
+		
+		public Builder filterProper() {
+			ruleList.add(new Rule(){
+				@Override
+				public boolean evaluate(String input) {
+					return input.toLowerCase(Locale.US).equals(input);
 				}
 			});
 			return this;

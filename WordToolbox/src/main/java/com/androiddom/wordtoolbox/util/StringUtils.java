@@ -1,7 +1,10 @@
 package com.androiddom.wordtoolbox.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -123,7 +126,23 @@ public class StringUtils {
 		}
 
 		return true;
-
+	}
+	
+	
+	public static String rearrangeString(String input, Random random) {
+		StringBuilder builder = new StringBuilder();
+		
+		List<String> inputList = new ArrayList<String>(input.length());
+		for (int i = 0; i < input.length(); i++) {
+			String curChar = input.substring(i, i + 1);
+			inputList.add(curChar);
+		}
+		
+		while(inputList.size() > 0) {
+			builder.append(inputList.remove(random.nextInt(inputList.size())));
+		}
+		
+		return builder.toString();
 	}
 
 }
