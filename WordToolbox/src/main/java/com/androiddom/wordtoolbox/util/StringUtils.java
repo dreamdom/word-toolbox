@@ -127,21 +127,30 @@ public class StringUtils {
 
 		return true;
 	}
-	
-	
+
+	/**
+	 * Method to take an input String and rearrange the order of the letters.
+	 * 
+	 * @param input
+	 *            The String to rearrange.
+	 * @param random
+	 *            A random object used to generate pseudo random numbers for
+	 *            rearranging.
+	 * @return The input String with the order of the letters rearranged.
+	 */
 	public static String rearrangeString(String input, Random random) {
 		StringBuilder builder = new StringBuilder();
-		
+
 		List<String> inputList = new ArrayList<String>(input.length());
 		for (int i = 0; i < input.length(); i++) {
 			String curChar = input.substring(i, i + 1);
 			inputList.add(curChar);
 		}
-		
-		while(inputList.size() > 0) {
+
+		while (inputList.size() > 0) {
 			builder.append(inputList.remove(random.nextInt(inputList.size())));
 		}
-		
+
 		return builder.toString();
 	}
 
