@@ -14,49 +14,49 @@ public class PhoneticUtils {
 	// For more information, see the following wikipedia page:
 	// https://en.wikipedia.org/wiki/Soundex
 
-	private static Map<String, Integer> soundexMap = new HashMap<String, Integer>();
+	private static Map<Character, Integer> soundexMap = new HashMap<Character, Integer>();
 
 	static {
 
 		// a, e, i, o, u, y, h, w
-		soundexMap.put("a", 0);
-		soundexMap.put("e", 0);
-		soundexMap.put("i", 0);
-		soundexMap.put("o", 0);
-		soundexMap.put("u", 0);
-		soundexMap.put("y", 0);
-		soundexMap.put("h", 0);
-		soundexMap.put("w", 0);
+		soundexMap.put('a', 0);
+		soundexMap.put('e', 0);
+		soundexMap.put('i', 0);
+		soundexMap.put('o', 0);
+		soundexMap.put('u', 0);
+		soundexMap.put('y', 0);
+		soundexMap.put('h', 0);
+		soundexMap.put('w', 0);
 
 		// b, f, p, v
-		soundexMap.put("b", 1);
-		soundexMap.put("f", 1);
-		soundexMap.put("p", 1);
-		soundexMap.put("v", 1);
+		soundexMap.put('b', 1);
+		soundexMap.put('f', 1);
+		soundexMap.put('p', 1);
+		soundexMap.put('v', 1);
 
 		// c, g, j, k, q, s, x, z
-		soundexMap.put("c", 2);
-		soundexMap.put("g", 2);
-		soundexMap.put("j", 2);
-		soundexMap.put("k", 2);
-		soundexMap.put("q", 2);
-		soundexMap.put("s", 2);
-		soundexMap.put("x", 2);
-		soundexMap.put("z", 2);
+		soundexMap.put('c', 2);
+		soundexMap.put('g', 2);
+		soundexMap.put('j', 2);
+		soundexMap.put('k', 2);
+		soundexMap.put('q', 2);
+		soundexMap.put('s', 2);
+		soundexMap.put('x', 2);
+		soundexMap.put('z', 2);
 
 		// d, t
-		soundexMap.put("d", 3);
-		soundexMap.put("t", 3);
+		soundexMap.put('d', 3);
+		soundexMap.put('t', 3);
 
 		// l
-		soundexMap.put("l", 4);
+		soundexMap.put('l', 4);
 
 		// m, n
-		soundexMap.put("m", 5);
-		soundexMap.put("n", 5);
+		soundexMap.put('m', 5);
+		soundexMap.put('n', 5);
 
 		// r
-		soundexMap.put("r", 6);
+		soundexMap.put('r', 6);
 	}
 
 	/**

@@ -14,16 +14,16 @@ import java.util.Set;
 public class StringUtils {
 
 	// Vowels and Y
-	private static Set<String> vowelsAndY = new HashSet<String>();
+	private static Set<Character> vowelsAndY = new HashSet<Character>();
 
 	// Initialize the set
 	static {
-		vowelsAndY.add("a");
-		vowelsAndY.add("e");
-		vowelsAndY.add("i");
-		vowelsAndY.add("o");
-		vowelsAndY.add("u");
-		vowelsAndY.add("y");
+		vowelsAndY.add('a');
+		vowelsAndY.add('e');
+		vowelsAndY.add('i');
+		vowelsAndY.add('o');
+		vowelsAndY.add('u');
+		vowelsAndY.add('y');
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class StringUtils {
 
 		// Loop through the string character by character
 		for (int i = 0; i < input.length(); i++) {
-			String curChar = input.substring(i, i + 1);
+			char curChar = input.charAt(i);
 
 			if (vowelsAndY.contains(curChar) && !prevIsVowel) {
 				// Only increase the rough syllable count if the previous
@@ -111,12 +111,12 @@ public class StringUtils {
 		if (test.length() != input.length())
 			return false;
 
-		Set<String> letterSet = new HashSet<String>();
+		Set<Character> letterSet = new HashSet<Character>();
 		for (int i = 0; i < input.length(); i++) {
-			String curChar = input.substring(i, i + 1);
+			char curChar = input.charAt(i);
 			if (!letterSet.contains(curChar)) {
-				int substringCount = StringUtils.substringCount(input, curChar);
-				int testCount = StringUtils.substringCount(test, curChar);
+				int substringCount = StringUtils.substringCount(input, "" +curChar);
+				int testCount = StringUtils.substringCount(test, "" + curChar);
 
 				if (substringCount != testCount)
 					return false;
@@ -141,9 +141,9 @@ public class StringUtils {
 	public static String rearrangeString(String input, Random random) {
 		StringBuilder builder = new StringBuilder();
 
-		List<String> inputList = new ArrayList<String>(input.length());
+		List<Character> inputList = new ArrayList<Character>(input.length());
 		for (int i = 0; i < input.length(); i++) {
-			String curChar = input.substring(i, i + 1);
+			char curChar = input.charAt(i);
 			inputList.add(curChar);
 		}
 
