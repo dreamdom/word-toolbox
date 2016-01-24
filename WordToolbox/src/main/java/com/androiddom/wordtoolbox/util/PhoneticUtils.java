@@ -70,7 +70,7 @@ public class PhoneticUtils {
 		StringBuilder builder = new StringBuilder();
 
 		for (int i = 0; i < input.length(); i++) {
-			String curChar = input.substring(i, i + 1);
+			char curChar = input.charAt(i);
 
 			// Check if the key exists and append
 			if (soundexMap.containsKey(curChar)) {
