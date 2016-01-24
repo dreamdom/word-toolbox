@@ -42,8 +42,13 @@ public class Dictionary {
 		random = new Random();
 	}
 
+	/**
+	 * A method to get an unmodifiable set of the words in the dictionary.
+	 * 
+	 * @return An unmodifable set of words in the dictionary.
+	 */
 	public Set<String> getWords() {
-		return words;
+		return Collections.unmodifiableSet(words);
 	}
 
 	/**
