@@ -40,13 +40,13 @@ public class StringUtils {
 	}
 
 	/**
-	 * Function that returns the rough number of syllables of an input word.
+	 * Function that returns the number of groups of vowels (including y) in a word.
 	 * 
 	 * @param input
-	 *            The input to get the rough syllable count for.
-	 * @return The "rough" count of syllables the input contains.
+	 *            The word to analyze.
+	 * @return The number of groups of vowels (including y) in the word.
 	 */
-	public static int getRoughSyllableCount(String input) {
+	public static int getVowelGroupCount(String input) {
 
 		// First, normalize the input
 		input = normalize(input);

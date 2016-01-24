@@ -45,7 +45,7 @@ public class Dictionary {
 	/**
 	 * A method to get an unmodifiable set of the words in the dictionary.
 	 * 
-	 * @return An unmodifable set of words in the dictionary.
+	 * @return An unmodifiable set of words in the dictionary.
 	 */
 	public Set<String> getWords() {
 		return Collections.unmodifiableSet(words);

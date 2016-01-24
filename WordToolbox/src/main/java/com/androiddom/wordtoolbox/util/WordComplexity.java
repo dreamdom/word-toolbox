@@ -16,7 +16,7 @@ public class WordComplexity {
 		int wordComplexity = 0;
 
 		wordComplexity += input.length();
-		wordComplexity += StringUtils.getRoughSyllableCount(input);
+		wordComplexity += StringUtils.getVowelGroupCount(input);
 		wordComplexity += getSoundexComplexity(input);
 
 		return wordComplexity;
