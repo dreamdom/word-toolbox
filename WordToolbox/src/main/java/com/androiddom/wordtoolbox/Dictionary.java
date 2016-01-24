@@ -16,32 +16,32 @@ public class Dictionary {
 	/**
 	 * The set of words in the dictionary.
 	 */
-	private Set<String> words;
+	protected Set<String> words;
 
 	/**
 	 * A list of words in the dictionary.
 	 */
-	private List<String> wordList;
+	protected List<String> wordList;
 
 	/**
 	 * An object used to generate a psuedo random number. Used for getting a
 	 * random word from the dictionary.
 	 */
-	private Random random;
+	protected Random random;
 
 	/**
 	 * A package access constructor for the Dictionary object.
 	 */
 	Dictionary(Set<String> words) {
 		this.words = words;
-		
+
 		// Add all the words to the list, and shuffle it
 		wordList = new ArrayList<String>(words);
 		Collections.shuffle(wordList);
-		
+
 		random = new Random();
 	}
-	
+
 	public Set<String> getWords() {
 		return words;
 	}
@@ -85,14 +85,26 @@ public class Dictionary {
 	 */
 	public static class Builder extends DictionaryBuilder<Dictionary> {
 
+		/**
+		 * Public constructor.
+		 * 
+		 * @param file
+		 *            File to use as the basis of the dictionary to be built.
+		 */
 		public Builder(File file) {
 			super(file);
 		}
 
+		/**
+		 * Public constructor.
+		 * 
+		 * @param baseDictionary
+		 *            Dictionary to use as the basis of the dictionary to be
+		 *            built.
+		 */
 		public Builder(Dictionary baseDictionary) {
 			super(baseDictionary);
 		}
-
 
 		// Building
 
@@ -107,7 +119,7 @@ public class Dictionary {
 
 			// Process any filters added to the builder
 			processRules();
-			
+
 			// Create a new instance of a dictionary object
 			Dictionary dictionary = new Dictionary(builderWords);
 
@@ -115,9 +127,6 @@ public class Dictionary {
 			return dictionary;
 		}
 
-
-
 	}
-
 
 }

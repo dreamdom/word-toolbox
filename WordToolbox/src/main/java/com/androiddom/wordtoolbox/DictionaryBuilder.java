@@ -11,15 +11,23 @@ import com.androiddom.wordtoolbox.util.DictionaryUtils;
 import com.androiddom.wordtoolbox.util.StringUtils;
 import com.androiddom.wordtoolbox.util.WordComplexity;
 
+/**
+ * A class used to build a dictionary object.
+ *
+ * @param <T>
+ *            The dictionary class to build. Must extend Dictionary.
+ */
 public abstract class DictionaryBuilder<T extends Dictionary> {
-	
+
+	/**
+	 * A set of words used by the builder for building the Dictionary.
+	 */
 	protected Set<String> builderWords;
 
 	/**
 	 * A list of rules to apply when building the dictionary.
 	 */
 	protected List<Rule> ruleList = new ArrayList<Rule>();
-	
 
 	/**
 	 * Constructor for the Builder object.
@@ -43,9 +51,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 		builderWords = new HashSet<String>();
 		builderWords.addAll(baseDictionary.getWords());
 	}
-	
-	
-	
+
 	// Rules
 
 	/**
@@ -72,8 +78,8 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @param contains
 	 *            The String that words must contain.
 	 * @param count
-	 *            The specific number of times that the String contains must
-	 *            be present.
+	 *            The specific number of times that the String contains must be
+	 *            present.
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> containsCount(final String contains, final int count) {
@@ -87,8 +93,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	}
 
 	/**
-	 * A rule that words in the dictionary must start with a specific
-	 * String.
+	 * A rule that words in the dictionary must start with a specific String.
 	 * 
 	 * @param startsWith
 	 *            The specific String that words must start with.
@@ -187,9 +192,14 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 		});
 		return this;
 	}
-	
+
+	/**
+	 * A rule to exclude words that start with a capital letter.
+	 * 
+	 * @return The Builder object.
+	 */
 	public DictionaryBuilder<T> filterProper() {
-		ruleList.add(new Rule(){
+		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
 				return input.toLowerCase(Locale.US).equals(input);
@@ -226,10 +236,9 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 		ruleList.add(rule);
 		return this;
 	}
-	
+
 	/**
-	 * Protected method that processes all of the rules applied to the
-	 * builder.
+	 * Protected method that processes all of the rules applied to the builder.
 	 */
 	protected void processRules() {
 		Set<String> passSet = new HashSet<String>();
@@ -249,8 +258,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 
 		builderWords = passSet;
 	}
-	
-	
+
 	/**
 	 * Public interface for a rule to be applied to a dictionary.
 	 *
@@ -268,11 +276,14 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 		 */
 		public boolean evaluate(String input);
 	}
-	
-	
-	
+
 	// Abstract methods
-	
+
+	/**
+	 * A method to build the dictionary.
+	 * 
+	 * @return A class the extends Dictionary.
+	 */
 	public abstract T build();
-	
+
 }
