@@ -64,9 +64,16 @@ public class PhoneticUtils {
 	 * 
 	 * @param input
 	 *            The String to convert to a Soundex-like representation.
-	 * @return The Soundex-like representation of the input String.
+	 * @return The Soundex-like representation of the input String. Null if the
+	 *         input is null.
 	 */
 	public static String getSoundex(String input) {
+
+		// bad input check
+		if (input == null) {
+			return null;
+		}
+
 		StringBuilder builder = new StringBuilder();
 
 		for (int i = 0; i < input.length(); i++) {

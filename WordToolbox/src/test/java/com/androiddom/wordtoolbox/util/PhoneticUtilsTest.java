@@ -58,6 +58,16 @@ public class PhoneticUtilsTest {
 		addCharactersToSet(test, letters);
 		phonetic = PhoneticUtils.getSoundex(test);
 		assertTrue("phonetic representation wrong", phonetic.equals("6"));
+		
+		test = "";
+		addCharactersToSet(test, letters);
+		phonetic = PhoneticUtils.getSoundex(test);
+		assertTrue("phonetic representation wrong", phonetic.equals(""));
+		
+		test = null;
+		addCharactersToSet(test, letters);
+		phonetic = PhoneticUtils.getSoundex(test);
+		assertTrue("phonetic representation wrong", phonetic == null);
 
 		// Make sure that we have tested all 26 letters of the alphabet
 		assertTrue("letters size not equal to 26", letters.size() == 26);
@@ -74,6 +84,12 @@ public class PhoneticUtilsTest {
 	 *            The set to add the characters to.
 	 */
 	private void addCharactersToSet(String input, Set<Character> set) {
+		
+		// bad input check
+		if(input == null || set == null) {
+			return;
+		}
+		
 		for (int i = 0; i < input.length(); i++) {
 			set.add(input.charAt(i));
 		}
