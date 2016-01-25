@@ -13,6 +13,12 @@ public class WordComplexity {
 	 * @return The calculated complexity for the input.
 	 */
 	public static int getWordComplexity(String input) {
+		
+		// bad input check
+		if(input == null || input.length() == 0) {
+			return 0;
+		}
+		
 		int wordComplexity = 0;
 
 		wordComplexity += input.length();
@@ -31,6 +37,12 @@ public class WordComplexity {
 	 * @return The complexity for the Soundex-like calculation.
 	 */
 	private static int getSoundexComplexity(String input) {
+		
+		// bad input check
+		if(input == null || input.length() == 0) {
+			return 0;
+		}
+		
 		int soundexComplexity = 0;
 
 		String soundexString = PhoneticUtils.getSoundex(input);
