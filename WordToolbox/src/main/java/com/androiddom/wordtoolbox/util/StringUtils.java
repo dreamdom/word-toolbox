@@ -32,21 +32,33 @@ public class StringUtils {
 	 * 
 	 * @param input
 	 *            The String to normalize.
-	 * @return The normalized String.
+	 * @return The normalized String. Null if input is null.
 	 */
 	public static String normalize(String input) {
+
+		// bad input check
+		if (input == null) {
+			return null;
+		}
+
 		input = input.toLowerCase(Locale.US);
 		return input;
 	}
 
 	/**
-	 * Function that returns the number of groups of vowels (including y) in a word.
+	 * Function that returns the number of groups of vowels (including y) in a
+	 * word.
 	 * 
 	 * @param input
 	 *            The word to analyze.
 	 * @return The number of groups of vowels (including y) in the word.
 	 */
 	public static int getVowelGroupCount(String input) {
+		
+		// bad input check
+		if(input == null) {
+			return 0;
+		}
 
 		// First, normalize the input
 		input = normalize(input);
@@ -84,6 +96,17 @@ public class StringUtils {
 	 * @return The number of times the substring appears in the input String.
 	 */
 	public static int substringCount(String input, String substring) {
+
+		// Check for bad inputs
+		if (input == null || substring == null) {
+			return 0;
+		}
+
+		if (input.length() == 0 || substring.length() == 0) {
+			return 0;
+		}
+
+		// Perform the count
 		int curCount = 0;
 		int curIndex = 0;
 
@@ -105,17 +128,27 @@ public class StringUtils {
 	 * @return True if test is an anagram of input, false otherwise.
 	 */
 	public static boolean isAnagram(String input, String test) {
-		if (test.equals(input))
+		
+		// bad input check
+		if(input == null || test == null) {
 			return false;
+		}
+		
+		if (test.equals(input)) {
+			return false;
+		}
 
-		if (test.length() != input.length())
+		if (test.length() != input.length()) {
 			return false;
+		}
+		
+		// Perform the anagram check
 
 		Set<Character> letterSet = new HashSet<Character>();
 		for (int i = 0; i < input.length(); i++) {
 			char curChar = input.charAt(i);
 			if (!letterSet.contains(curChar)) {
-				int substringCount = StringUtils.substringCount(input, "" +curChar);
+				int substringCount = StringUtils.substringCount(input, "" + curChar);
 				int testCount = StringUtils.substringCount(test, "" + curChar);
 
 				if (substringCount != testCount)
@@ -136,9 +169,16 @@ public class StringUtils {
 	 * @param random
 	 *            A random object used to generate pseudo random numbers for
 	 *            rearranging.
-	 * @return The input String with the order of the letters rearranged.
+	 * @return The input String with the order of the letters rearranged, or
+	 *         null if input or random is null.
 	 */
 	public static String rearrangeString(String input, Random random) {
+
+		// Check for bad input
+		if (input == null || random == null) {
+			return null;
+		}
+
 		StringBuilder builder = new StringBuilder();
 
 		List<Character> inputList = new ArrayList<Character>(input.length());

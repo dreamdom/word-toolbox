@@ -7,6 +7,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
+/**
+ * A set of test cases for functions in the PhoneticUtils class.
+ *
+ */
 public class PhoneticUtilsTest {
 
 	/**
