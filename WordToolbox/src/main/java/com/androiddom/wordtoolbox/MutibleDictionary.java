@@ -1,5 +1,6 @@
 package com.androiddom.wordtoolbox;
 
+import java.io.File;
 import java.util.Set;
 
 /**
@@ -47,6 +48,57 @@ public class MutibleDictionary extends Dictionary {
 		}
 
 		return false;
+	}
+
+	/**
+	 * A class used to Build MutibleDictionary objects.
+	 *
+	 */
+	public static class Builder extends DictionaryBuilder<MutibleDictionary> {
+
+		/**
+		 * Public constructor.
+		 * 
+		 * @param file
+		 *            File to use as the basis of the dictionary to be built.
+		 */
+		public Builder(File file) {
+			super(file);
+		}
+
+		/**
+		 * Public constructor.
+		 * 
+		 * @param baseDictionary
+		 *            Dictionary to use as the basis of the dictionary to be
+		 *            built.
+		 */
+		public Builder(Dictionary baseDictionary) {
+			super(baseDictionary);
+		}
+
+		// Building
+
+		/**
+		 * Method to build the MutibleDictionary object. The MutibleDictionary
+		 * will be based on a file that is read or a dictionary object depending
+		 * on what constructor was used. Will apply all the rules set on the
+		 * builder.
+		 * 
+		 * @return A dictionary object.
+		 */
+		public MutibleDictionary build() {
+
+			// Process any filters added to the builder
+			processRules();
+
+			// Create a new instance of a dictionary object
+			MutibleDictionary dictionary = new MutibleDictionary(builderWords);
+
+			// Return the process dictionary
+			return dictionary;
+		}
+
 	}
 
 }

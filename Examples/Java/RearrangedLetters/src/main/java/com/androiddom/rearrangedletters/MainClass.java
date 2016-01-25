@@ -2,7 +2,7 @@ package com.androiddom.rearrangedletters;
 
 import java.io.File;
 
-import com.androiddom.wordtoolbox.Dictionary;
+import com.androiddom.wordtoolbox.MutibleDictionary;
 
 public class MainClass {
 
@@ -10,7 +10,7 @@ public class MainClass {
 		
 		System.out.println("Welcome to Rearranged Letters");
 		
-		Dictionary dictionary = new Dictionary.Builder(new File("../../../DictionaryData/dictionary.txt"))
+		MutibleDictionary dictionary = new MutibleDictionary.Builder(new File("../../../DictionaryData/dictionary.txt"))
 				.filterPossesive()
 				.filterProper()
 				.minLength(4)
