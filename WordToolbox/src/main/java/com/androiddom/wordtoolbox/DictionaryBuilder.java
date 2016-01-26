@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import com.androiddom.wordtoolbox.util.DictionaryUtils;
+import com.androiddom.wordtoolbox.util.PhoneticUtils;
 import com.androiddom.wordtoolbox.util.StringUtils;
 import com.androiddom.wordtoolbox.util.WordComplexity;
 
@@ -220,6 +221,39 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 			@Override
 			public boolean evaluate(String evalInput) {
 				return StringUtils.isAnagram(input, evalInput);
+			}
+		});
+		return this;
+	}
+
+	/**
+	 * A rule to only include words with a specific soundex pattern.
+	 * 
+	 * @param soundex
+	 *            The soundex pattern to match.
+	 * @return The Builder object.
+	 */
+	public DictionaryBuilder<T> soundexEquals(final String soundex) {
+		ruleList.add(new Rule() {
+			@Override
+			public boolean evaluate(String input) {
+				return PhoneticUtils.getSoundex(input).equals(soundex);
+			}
+
+		});
+		return this;
+	}
+
+	/**
+	 * A rule to exclude words with non ascii characters.
+	 * 
+	 * @return The Builder object.
+	 */
+	public DictionaryBuilder<T> removeNonAscii() {
+		ruleList.add(new Rule() {
+			@Override
+			public boolean evaluate(String input) {
+				return input.equals(input.replaceAll("[^a-zA-Z ]", ""));
 			}
 		});
 		return this;
