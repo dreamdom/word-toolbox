@@ -1,6 +1,7 @@
 package com.androiddom.wordtoolbox;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -75,6 +76,17 @@ public class MutibleDictionary extends Dictionary {
 		 */
 		public Builder(Dictionary baseDictionary) {
 			super(baseDictionary);
+		}
+		
+		/**
+		 * Public constructor.
+		 * 
+		 * @param words
+		 *            The collection of words to use as the basis of the
+		 *            dictionary to be built.
+		 */
+		public Builder(Collection<String> words) {
+			super(words);
 		}
 
 		// Building

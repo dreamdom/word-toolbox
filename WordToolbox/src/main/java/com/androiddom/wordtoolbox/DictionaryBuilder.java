@@ -2,6 +2,7 @@ package com.androiddom.wordtoolbox;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -49,8 +50,18 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 *            The dictionary to be used as the basis of this dictionary.
 	 */
 	public DictionaryBuilder(Dictionary baseDictionary) {
-		builderWords = new HashSet<String>();
-		builderWords.addAll(baseDictionary.getWords());
+		builderWords = new HashSet<String>(baseDictionary.getWords());
+	}
+
+	/**
+	 * Constructor for the Builder object.
+	 * 
+	 * @param words
+	 *            A Collection of words to be used as the basis of this
+	 *            dictionary.
+	 */
+	public DictionaryBuilder(Collection<String> words) {
+		builderWords = new HashSet<>(words);
 	}
 
 	// Rules
@@ -63,6 +74,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> contains(final String contains) {
+		
+		// Bad input check
+		if(contains == null || contains.length()==0) {
+			return this;
+		}
+		
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
