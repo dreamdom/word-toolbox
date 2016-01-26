@@ -51,16 +51,36 @@ public class MutilbleDictionaryTest {
 	public void removeWordTest() {
 		boolean result;
 		
+		// Build a second dictionary
+		Dictionary secondDictionary = new Dictionary.Builder(testDictionary).build();
+		
+		// Verify that the second dictionary has the word.
+		result = secondDictionary.hasWord("the");
+		assertTrue("secondDictionary hasWord incorrect", result);
+		
 		// Test that the word is present
 		result = testDictionary.hasWord("the");
 		assertTrue("dictionary hasWord incorrect", result);
 		
 		// Remove the word
-		testDictionary.removeWord("the");
+		result = testDictionary.removeWord("the");
+		
+		// Assert that the word was removed
+		assertTrue("dictionary word was not removed", result);
 		
 		// Test that the word is not present
 		result = testDictionary.hasWord("the");
 		assertFalse("dictionary hasWord incorrect", result);
+		
+		// Attempt to remove the word again
+		result = testDictionary.removeWord("the");
+
+		// Assert that the word was not removed
+		assertFalse("dictionary word was not removed", result);
+		
+		// Verify that the second dictionary still has the word
+		result = secondDictionary.hasWord("the");
+		assertTrue("secondDictionary hasWord incorrect", result);
 		
 	}
 	
