@@ -54,9 +54,9 @@ public class StringUtils {
 	 * @return The number of groups of vowels (including y) in the word.
 	 */
 	public static int getVowelGroupCount(String input) {
-		
+
 		// bad input check
-		if(input == null) {
+		if (input == null) {
 			return 0;
 		}
 
@@ -128,12 +128,12 @@ public class StringUtils {
 	 * @return True if test is an anagram of input, false otherwise.
 	 */
 	public static boolean isAnagram(String input, String test) {
-		
+
 		// bad input check
-		if(input == null || test == null) {
+		if (input == null || test == null) {
 			return false;
 		}
-		
+
 		if (test.equals(input)) {
 			return false;
 		}
@@ -141,7 +141,7 @@ public class StringUtils {
 		if (test.length() != input.length()) {
 			return false;
 		}
-		
+
 		// Perform the anagram check
 
 		Set<Character> letterSet = new HashSet<Character>();
@@ -181,17 +181,31 @@ public class StringUtils {
 
 		StringBuilder builder = new StringBuilder();
 
-		List<Character> inputList = new ArrayList<Character>(input.length());
-		for (int i = 0; i < input.length(); i++) {
-			char curChar = input.charAt(i);
-			inputList.add(curChar);
-		}
+		List<Character> inputList = stringToCharacterList(input);
 
 		while (inputList.size() > 0) {
 			builder.append(inputList.remove(random.nextInt(inputList.size())));
 		}
 
 		return builder.toString();
+	}
+
+	/**
+	 * Method to convert a String to a list of characters.
+	 * 
+	 * @param input
+	 *            The string to convert.
+	 * @return A List of Characters.
+	 */
+	public static List<Character> stringToCharacterList(String input) {
+		List<Character> inputList = new ArrayList<Character>(input.length());
+
+		for (int i = 0; i < input.length(); i++) {
+			char curChar = input.charAt(i);
+			inputList.add(curChar);
+		}
+
+		return inputList;
 	}
 
 }
