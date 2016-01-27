@@ -101,6 +101,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> containsCount(final String contains, final int count) {
+		
+		// Bad input check
+		if(count == 0 || contains == null || contains.length() == 0) {
+			return this;
+		}
+		
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
@@ -118,6 +124,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> startsWith(final String startsWith) {
+		
+		// Bad input check
+		if(startsWith == null || startsWith.length() == 0) {
+			return this;
+		}
+		
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {

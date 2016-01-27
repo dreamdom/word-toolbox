@@ -14,7 +14,7 @@ import org.junit.Test;
 public class DictionaryBuilderTest {
 
 	/**
-	 * Method to test the DictionaryBuilder contains method.
+	 * Test for the DictionaryBuilder contains method.
 	 */
 	@Test
 	public void containsTest() {
@@ -44,6 +44,79 @@ public class DictionaryBuilderTest {
 				.build();
 		
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 4);
+	}
+	
+	/**
+	 * Test for the DictionaryBuilder containsCount method.
+	 */
+	@Test
+	public void containsCountTest() {
+		
+		Dictionary testDict;
+		String[] words = {"ba", "baba", "bar", "bat", "car"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.containsCount("ba", 1)
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 3);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.containsCount("ba", 2)
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
+		assertTrue("dictionary hasWord wrong", testDict.hasWord("baba"));
+		
+		// Bad input checks
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.containsCount("ba", 0)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 5);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.containsCount("", 0)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 5);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.containsCount(null, 0)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 5);
+	}
+	
+	@Test
+	public void startsWithTest() {
+		Dictionary testDict;
+		String[] words = {"ba", "baba", "bar", "bet", "car", "cba"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.startsWith("b")
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 4);
+		assertFalse("dictionary has word wrong", testDict.hasWord("car"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("cba"));
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.startsWith("ba")
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 3);
+		assertFalse("dictionary has word wrong", testDict.hasWord("car"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("cba"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("bet"));
+		
+		// Bad input check
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.startsWith("")
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.startsWith(null)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
+		
 	}
 	
 }
