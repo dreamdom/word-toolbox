@@ -112,15 +112,15 @@ public class Round {
 	// private methods
 
 	private String rearrangeWord(String input) {
-		String rearrangeWord = input;
+		String curRearrange = input;
 		int count = 0;
 
-		while (rearrangeWord.equals(input) && count < MAX_REARRANGE_TRIES) {
-			rearrangedWord = StringUtils.rearrangeString(word, random);
+		while (curRearrange.equals(input) && count < MAX_REARRANGE_TRIES) {
+			curRearrange = StringUtils.rearrangeString(input, random);
 			count++;
 		}
 
-		return rearrangeWord;
+		return curRearrange;
 	}
 
 }
