@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import com.androiddom.wordtoolbox.util.DictionaryUtils;
+import com.androiddom.wordtoolbox.analytics.WordComplexity;
+import com.androiddom.wordtoolbox.util.FileUtils;
 import com.androiddom.wordtoolbox.util.PhoneticUtils;
 import com.androiddom.wordtoolbox.util.StringUtils;
-import com.androiddom.wordtoolbox.util.WordComplexity;
 
 /**
  * A class used to build a dictionary object.
@@ -40,7 +40,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	public DictionaryBuilder(File file) {
 		// Load the dictionary from file or an existing dictionary
 		builderWords = new HashSet<String>();
-		DictionaryUtils.loadSimpleFileToSet(file, builderWords);
+		FileUtils.loadSimpleDictionaryFileToSet(file, builderWords);
 	}
 
 	/**

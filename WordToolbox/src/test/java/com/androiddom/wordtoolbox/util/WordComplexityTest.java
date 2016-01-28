@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.androiddom.wordtoolbox.analytics.WordComplexity;
+
 /**
  * A set of test cases for functions in the WordComplexity class.
  *

@@ -1,4 +1,7 @@
-package com.androiddom.wordtoolbox.util;
+package com.androiddom.wordtoolbox.analytics;
+
+import com.androiddom.wordtoolbox.util.PhoneticUtils;
+import com.androiddom.wordtoolbox.util.StringUtils;
 
 /**
  * A collection of utility functions to help analyze the complexity of a word.

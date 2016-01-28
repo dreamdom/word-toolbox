@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * A collection of functions that are used by Dictionary objects.
+ * A collection of functions related to using Files.
  *
  */
-public class DictionaryUtils {
+public class FileUtils {
 
 	private static final String SIMPLE_DICTIONARY_START = "---";
 
@@ -24,7 +24,7 @@ public class DictionaryUtils {
 	 * @param words
 	 *            The Set to add the words from the file to.
 	 */
-	public static void loadSimpleFileToSet(File file, Set<String> words) {
+	public static void loadSimpleDictionaryFileToSet(File file, Set<String> words) {
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			boolean addToSet = false;
 			String line;
