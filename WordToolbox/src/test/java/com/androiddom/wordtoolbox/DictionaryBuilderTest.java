@@ -119,4 +119,64 @@ public class DictionaryBuilderTest {
 		
 	}
 	
+	@Test
+	public void endsWithTest() {
+		
+		Dictionary testDict;
+		String[] words = {"ba", "baba", "bar", "bet", "car", "cba"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.endsWith("a")
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 3);
+		assertFalse("dictionary has word wrong", testDict.hasWord("car"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("bet"));
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.endsWith("ba")
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 3);
+		assertFalse("dictionary has word wrong", testDict.hasWord("car"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("bar"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("bet"));
+		
+		// Bad input check
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.endsWith("")
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.endsWith(null)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
+	}
+	
+	@Test
+	public void lengthTest() {
+		
+		Dictionary testDict;
+		String[] words = {"ba", "baba", "bar", "bet", "car", "cba"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.length(3)
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 4);
+		assertFalse("dictionary has word wrong", testDict.hasWord("ba"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("baba"));
+		
+		// Bad input check
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.length(0)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.length(-1)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+	}
+	
 }

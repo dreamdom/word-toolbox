@@ -74,12 +74,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> contains(final String contains) {
-		
+
 		// Bad input check
-		if(contains == null || contains.length()==0) {
+		if (contains == null || contains.length() == 0) {
 			return this;
 		}
-		
+
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
@@ -101,12 +101,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> containsCount(final String contains, final int count) {
-		
+
 		// Bad input check
-		if(count == 0 || contains == null || contains.length() == 0) {
+		if (count == 0 || contains == null || contains.length() == 0) {
 			return this;
 		}
-		
+
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
@@ -124,12 +124,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> startsWith(final String startsWith) {
-		
+
 		// Bad input check
-		if(startsWith == null || startsWith.length() == 0) {
+		if (startsWith == null || startsWith.length() == 0) {
 			return this;
 		}
-		
+
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
@@ -147,6 +147,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> endsWith(final String endsWith) {
+
+		// Bad input check
+		if (endsWith == null || endsWith.length() == 0) {
+			return this;
+		}
+
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
@@ -164,6 +170,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * @return The Builder object.
 	 */
 	public DictionaryBuilder<T> length(final int length) {
+
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
