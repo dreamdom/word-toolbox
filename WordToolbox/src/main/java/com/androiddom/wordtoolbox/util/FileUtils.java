@@ -15,6 +15,8 @@ public class FileUtils {
 
 	private static final String SIMPLE_DICTIONARY_START = "---";
 
+	// TODO: Save the header
+	
 	/**
 	 * Method to load a file in the Simple Dictionary format to a Set of
 	 * Strings.
@@ -48,5 +50,7 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	// TODO: Add method saveDictionaryToSimpleFile
 
 }

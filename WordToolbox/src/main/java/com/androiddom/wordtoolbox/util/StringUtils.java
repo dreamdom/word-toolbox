@@ -208,4 +208,27 @@ public class StringUtils {
 		return inputList;
 	}
 
+	/**
+	 * Method to reverse a String.
+	 * 
+	 * @param input
+	 *            The String to reverse.
+	 * @return The reverse of the input String.
+	 */
+	public static String reverseString(String input) {
+
+		// Bad input check
+		if (input == null || input.length() == 0) {
+			return input;
+		}
+
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = input.length() - 1; i >= 0; i--) {
+			builder.append(input.charAt(i));
+		}
+
+		return builder.toString();
+	}
+
 }
