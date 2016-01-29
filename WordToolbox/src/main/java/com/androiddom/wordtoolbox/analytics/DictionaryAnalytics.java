@@ -34,4 +34,29 @@ public class DictionaryAnalytics {
 		return lengthMap;
 	}
 
+	/**
+	 * Returns word complexity mapped to the count of words with that
+	 * complexity.
+	 * 
+	 * @param dictionary
+	 *            The dictionary to analyze.
+	 * @return A map of word complexity mapped to a count of words with that
+	 *         complexity.
+	 */
+	public static Map<Integer, Integer> wordComplexityCount(Dictionary dictionary) {
+		Map<Integer, Integer> complexityMap = new HashMap<Integer, Integer>();
+
+		for (String word : dictionary.getWords()) {
+			int complexity = WordComplexity.getWordComplexity(word);
+			int count = 0;
+
+			if (complexityMap.containsKey(complexity))
+				count = complexityMap.get(complexity);
+			count++;
+			complexityMap.put(complexity, count);
+		}
+
+		return complexityMap;
+	}
+
 }

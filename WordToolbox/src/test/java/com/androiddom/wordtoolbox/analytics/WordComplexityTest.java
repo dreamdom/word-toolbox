@@ -1,4 +1,4 @@
-package com.androiddom.wordtoolbox.util;
+package com.androiddom.wordtoolbox.analytics;
 
 import static org.junit.Assert.assertTrue;
 
