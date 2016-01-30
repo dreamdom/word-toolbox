@@ -54,11 +54,22 @@ public class Game {
 
 		// Remove the word from the dictionary so it won't get used again
 		gameDictionary.removeWord(word);
-		
+
 		// Use the full dictionary to look for anagrams
 		Set<String> anagrams = new Dictionary.Builder(fullDictionary).anagrams(word).build().getWords();
 		return new Round(word, random, anagrams);
 	}
+
+	/**
+	 * A method to see how many words are left in the game dictionary.
+	 * 
+	 * @return The number of words left in the game dictionary.
+	 */
+	public int getNumberOfWordsLeft() {
+		return this.gameDictionary.numberOfWords();
+	}
+
+	// Private methods
 
 	/**
 	 * Method to convert the set game complexity to a word complexity used

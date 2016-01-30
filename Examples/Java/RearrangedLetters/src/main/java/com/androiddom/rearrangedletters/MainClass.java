@@ -64,6 +64,14 @@ public class MainClass {
 
 		// Start a new round
 		while (!exitGame) {
+			
+			// First check that there are enough words left to start a new round
+			if(game.getNumberOfWordsLeft() == 0) {
+				System.out.println("There are no words left for a new round");
+				exitGame = true;
+				continue;
+			}
+			
 			Round curRound = game.newRound();
 			
 			// Initialize the win object
