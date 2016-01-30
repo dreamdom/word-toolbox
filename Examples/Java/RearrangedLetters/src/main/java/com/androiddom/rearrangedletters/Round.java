@@ -50,6 +50,10 @@ public class Round {
 		return gameWord;
 	}
 	
+	public boolean rearrangedWordIsAnagram() {
+		return anagrams.contains(gameWord);
+	}
+	
 	public boolean setGameWord(String input) {
 		// Check for a valid input coming in
 		if(!StringUtils.isAnagram(input, gameWord)) {

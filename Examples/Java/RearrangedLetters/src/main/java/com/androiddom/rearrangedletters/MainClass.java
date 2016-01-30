@@ -21,6 +21,7 @@ public class MainClass {
 	private static final String EXIT = "/exit";
 
 	private static boolean exitGame = false;
+	private static boolean winner = false;
 
 	/**
 	 * Main method. Asks for a game level, and starts the game.
@@ -44,7 +45,16 @@ public class MainClass {
 		System.out.println();
 		System.out.print("Enter a game level:");
 
-		int gameLevel = Integer.parseInt(scanner.nextLine());
+		// Make sure a valid game level is entered.
+		int gameLevel = 3;
+		try {
+			gameLevel = Integer.parseInt(scanner.nextLine());
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid number entered. Please enter a valid number next time, for example '1'");
+			System.out.println();
+			System.out.println("defaulting to level: " + gameLevel);
+			System.out.println();
+		}
 
 		Game game = new Game(dictionary, gameLevel);
 
@@ -56,13 +66,27 @@ public class MainClass {
 		while (!exitGame) {
 			Round curRound = game.newRound();
 			
+			// Initialize the win object
+			winner = false;
+			
 			while (!curRound.isRoundOver() && !exitGame) {
 				printGameWord(curRound.getRearrangedWord());
 				String input = scanner.nextLine();
 				parseInput(input, curRound);
 			}
 
-			System.out.println("The word was '" + curRound.getWord() + "'");
+			System.out.println("The original word was '" + curRound.getWord() + "'");
+			
+			// Print out an extra message if the user was a winner
+			if(winner) {
+				if(curRound.rearrangedWordIsAnagram()) {
+					System.out.println("you entered '" + curRound.getRearrangedWord() +"' which is a valid anagram.");
+					System.out.println();
+				} else {
+					System.out.println("you entered the original word");
+					System.out.println();
+				}
+			}
 			
 			// If they aren't already exiting, ask the user if they would like to play again
 			if(!exitGame) {
@@ -100,6 +124,7 @@ public class MainClass {
 		} else if (round.setGameWord(input)) {
 			// Print out a message if the right word was entered
 			System.out.println("winner!");
+			winner = true;
 		}
 	}
 
