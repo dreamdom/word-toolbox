@@ -1,7 +1,9 @@
 package com.androiddom.rearrangedletters;
 
 import java.util.Random;
+import java.util.Set;
 
+import com.androiddom.wordtoolbox.Dictionary;
 import com.androiddom.wordtoolbox.MutibleDictionary;
 
 /**
@@ -16,7 +18,8 @@ public class Game {
 	 */
 	private static final int BASE_WORD_COMPLEXITY = 6;
 
-	private MutibleDictionary dictionary;
+	private MutibleDictionary gameDictionary;
+	private Dictionary fullDictionary;
 	private int gameLevel;
 	private Random random;
 
@@ -36,7 +39,8 @@ public class Game {
 		random = new Random();
 
 		// Filter the dictionary down to the desired complexity
-		this.dictionary = new MutibleDictionary.Builder(dictionary).complexity(gameLevelToWordComplexity()).build();
+		this.fullDictionary = dictionary;
+		this.gameDictionary = new MutibleDictionary.Builder(dictionary).complexity(gameLevelToWordComplexity()).build();
 	}
 
 	/**
@@ -46,12 +50,14 @@ public class Game {
 	 */
 	public Round newRound() {
 
-		String word = dictionary.getRandomWord();
+		String word = gameDictionary.getRandomWord();
 
 		// Remove the word from the dictionary so it won't get used again
-		dictionary.removeWord(word);
-
-		return new Round(word, random, dictionary);
+		gameDictionary.removeWord(word);
+		
+		// Use the full dictionary to look for anagrams
+		Set<String> anagrams = new Dictionary.Builder(fullDictionary).anagrams(word).build().getWords();
+		return new Round(word, random, anagrams);
 	}
 
 	/**

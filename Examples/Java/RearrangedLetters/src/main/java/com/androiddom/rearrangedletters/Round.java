@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import com.androiddom.wordtoolbox.Dictionary;
 import com.androiddom.wordtoolbox.util.StringUtils;
 
 /**
@@ -28,7 +27,7 @@ public class Round {
 	private List<String> gameWordOptionsList;
 	private int rearrangeCount = 0;
 
-	public Round(String word, Random random, Dictionary dict) {
+	public Round(String word, Random random, Set<String> anagrams) {
 		// Save a reference to the original word
 		this.originalWord = word;
 
@@ -40,7 +39,7 @@ public class Round {
 		hintCount = 0;
 
 		// Find all the anagrams for this word, as they are valid answers too
-		anagrams = new Dictionary.Builder(dict).anagrams(word).build().getWords();
+		this.anagrams = anagrams;
 
 		// Generate the rearrange options
 		generateGameOptions("", word);
