@@ -49,6 +49,15 @@ public class Round {
 	public String getRearrangedWord() {
 		return gameWord;
 	}
+	
+	public boolean setGameWord(String input) {
+		// Check for a valid input coming in
+		if(!StringUtils.isAnagram(input, gameWord)) {
+			return false;
+		}
+		gameWord = input;
+		return checkWord(input);
+	}
 
 	public String getWord() {
 		return originalWord;
