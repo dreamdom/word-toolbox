@@ -1,9 +1,13 @@
 package com.androiddom.wordtoolbox.analytics;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.androiddom.wordtoolbox.Dictionary;
+import com.androiddom.wordtoolbox.util.StringUtils;
 
 /**
  * A collection of functions to analyze a full dictionary.
@@ -57,6 +61,25 @@ public class DictionaryAnalytics {
 		}
 
 		return complexityMap;
+	}
+
+	/**
+	 * A function to find palindromes in a dictionary.
+	 * 
+	 * @param dictionary
+	 *            The dictionary to check.
+	 * @return A list of palindromes.
+	 */
+	public static List<String> findPalindromes(Dictionary dictionary) {
+		List<String> palindromeList = new ArrayList<String>();
+		for (String word : dictionary.getWords()) {
+			String lowerCase = word.toLowerCase(Locale.US);
+			if (lowerCase.length() > 1 && lowerCase.equals(StringUtils.reverseString(lowerCase))) {
+				palindromeList.add(word);
+			}
+		}
+
+		return palindromeList;
 	}
 
 }
