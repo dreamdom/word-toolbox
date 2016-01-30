@@ -37,7 +37,8 @@ public class MainClass {
 		scanner.nextLine();
 		while(!curRound.isRoundOver()) {
 			scanner.nextLine();
-			curRound.useHint();
+			// curRound.useHint();
+			curRound.nextGameWord();
 			System.out.print(curRound.getRearrangedWord());
 		}
 		

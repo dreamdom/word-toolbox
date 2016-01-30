@@ -51,7 +51,7 @@ public class Game {
 		// Remove the word from the dictionary so it won't get used again
 		dictionary.removeWord(word);
 
-		return new Round(word, random);
+		return new Round(word, random, dictionary);
 	}
 
 	/**
