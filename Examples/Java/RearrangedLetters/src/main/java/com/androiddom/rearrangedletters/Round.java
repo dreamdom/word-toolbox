@@ -17,6 +17,10 @@ import com.androiddom.wordtoolbox.util.StringUtils;
  */
 public class Round {
 
+	/**
+	 * A constant representing the number of times an input word will be
+	 * rearranged while generating the list of possible game words.
+	 */
 	public static final int MAX_REARRANGE_TRIES = 100;
 
 	private final String originalWord;
@@ -27,6 +31,16 @@ public class Round {
 	private List<String> gameWordOptionsList;
 	private int rearrangeCount = 0;
 
+	/**
+	 * Constructor for the Round object.
+	 * 
+	 * @param word
+	 *            The word to use as the original word.
+	 * @param random
+	 *            A Random object used to generate a list of rearranged options.
+	 * @param anagrams
+	 *            A set of the valid anagrams of the original word.
+	 */
 	public Round(String word, Random random, Set<String> anagrams) {
 		// Save a reference to the original word
 		this.originalWord = word;
@@ -46,24 +60,50 @@ public class Round {
 		nextGameWord();
 	}
 
-	public String getRearrangedWord() {
+	/**
+	 * Method to get the current gameWord.
+	 * 
+	 * @return The current gameWord.
+	 */
+	public String getGameWord() {
 		return gameWord;
 	}
-	
-	public boolean rearrangedWordIsAnagram() {
+
+	/**
+	 * Method to check if the gameWord is a valid anagram of the original word.
+	 * 
+	 * @return True if the gameWord is a valid anagram of the original word,
+	 *         false otherwise.
+	 */
+	public boolean gameWordIsAnagram() {
 		return anagrams.contains(gameWord);
 	}
-	
+
+	/**
+	 * Method to set what the current gameWord is.
+	 * 
+	 * @param input
+	 *            What to set the game word to. If input does not contain the
+	 *            same letters and count of letters as the gameWord, the
+	 *            gameWord will not change.
+	 * @return True if the current game word is the original word or a valid
+	 *         anagram, false otherwise.
+	 */
 	public boolean setGameWord(String input) {
 		// Check for a valid input coming in
-		if(!StringUtils.isAnagram(input, gameWord)) {
+		if (!StringUtils.isAnagram(input, gameWord)) {
 			return false;
 		}
 		gameWord = input;
 		return checkWord(input);
 	}
 
-	public String getWord() {
+	/**
+	 * Method to get the original word for the round.
+	 * 
+	 * @return The original word for the round.
+	 */
+	public String getOriginalWord() {
 		return originalWord;
 	}
 
@@ -82,13 +122,14 @@ public class Round {
 
 	/**
 	 * Method to determine if the round is over. The round is over when the game
-	 * word is the same as the original word, or there are no more rearranged options.
+	 * word is the same as the original word, or there are no more rearranged
+	 * options.
 	 * 
 	 * @return True if the round is over, because the rearranged word is the
 	 *         same as the original or an anagram of the original.
 	 */
 	public boolean isRoundOver() {
-		return (checkWord(gameWord) || gameWordOptionsList.size()==0);
+		return (checkWord(gameWord) || gameWordOptionsList.size() == 0);
 	}
 
 	/**
@@ -100,10 +141,20 @@ public class Round {
 		return hintCount;
 	}
 
+	/**
+	 * Method to calculate a score for the round.
+	 * 
+	 * @return The score for the round.
+	 */
 	public int getScore() {
 		return originalWord.length() - hintCount - 1;
 	}
 
+	/**
+	 * Method to use a hint. Each hint puts a letter in the correct location
+	 * starting at the beginning of the word. Letters placed correctly by hints
+	 * will not be part of any rearrangement for the rest of the round.
+	 */
 	public void useHint() {
 		// increment the hint count
 		hintCount++;
@@ -136,7 +187,12 @@ public class Round {
 
 	}
 
-
+	/**
+	 * Method to set the game word to the next game word in the list of
+	 * precomputed options. If the end of the list has been reached, start over
+	 * from the beginning of the list. If the list is empty, default the game
+	 * word to the original word.
+	 */
 	public void nextGameWord() {
 		if (gameWordOptionsList.size() == 0) {
 			this.gameWord = originalWord;
@@ -145,9 +201,20 @@ public class Round {
 		}
 		rearrangeCount++;
 	}
-	
+
 	// private methods
 
+	/**
+	 * Method to generate the list of possible game words. The game word is the
+	 * rearranged letters of the original word. Game words should not be equal
+	 * to the original word, or an anagram of the original word. The list of
+	 * game word options should not contain duplicates.
+	 * 
+	 * @param prefix
+	 *            The part of the word that should remain in the same order.
+	 * @param rearrange
+	 *            The part of the word that should be rearranged.
+	 */
 	private void generateGameOptions(String prefix, String rearrange) {
 		Set<String> gameWordOptions = new HashSet<String>();
 		for (int i = 0; i < MAX_REARRANGE_TRIES; i++) {
@@ -159,7 +226,7 @@ public class Round {
 
 		// Save the game word options
 		this.gameWordOptionsList = new ArrayList<>(gameWordOptions);
-		
+
 		// shuffle
 		Collections.shuffle(gameWordOptionsList);
 

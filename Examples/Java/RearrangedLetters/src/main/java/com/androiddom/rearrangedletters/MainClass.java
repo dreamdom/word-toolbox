@@ -78,17 +78,17 @@ public class MainClass {
 			winner = false;
 			
 			while (!curRound.isRoundOver() && !exitGame) {
-				printGameWord(curRound.getRearrangedWord());
+				printGameWord(curRound.getGameWord());
 				String input = scanner.nextLine();
 				parseInput(input, curRound);
 			}
 
-			System.out.println("The original word was '" + curRound.getWord() + "'");
+			System.out.println("The original word was '" + curRound.getOriginalWord() + "'");
 			
 			// Print out an extra message if the user was a winner
 			if(winner) {
-				if(curRound.rearrangedWordIsAnagram()) {
-					System.out.println("you entered '" + curRound.getRearrangedWord() +"' which is a valid anagram.");
+				if(curRound.gameWordIsAnagram()) {
+					System.out.println("you entered '" + curRound.getGameWord() +"' which is a valid anagram.");
 					System.out.println();
 				} else {
 					System.out.println("you entered the original word");
