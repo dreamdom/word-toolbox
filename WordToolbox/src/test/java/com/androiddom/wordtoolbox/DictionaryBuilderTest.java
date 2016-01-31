@@ -85,6 +85,9 @@ public class DictionaryBuilderTest {
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 5);
 	}
 	
+	/**
+	 * Test for the DictionaryBuilder startsWith method.
+	 */
 	@Test
 	public void startsWithTest() {
 		Dictionary testDict;
@@ -119,6 +122,9 @@ public class DictionaryBuilderTest {
 		
 	}
 	
+	/**
+	 * Test for the DictionaryBuilder ends with method.
+	 */
 	@Test
 	public void endsWithTest() {
 		
@@ -153,6 +159,9 @@ public class DictionaryBuilderTest {
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
 	}
 	
+	/**
+	 * Test for the DictionaryBuilder length method.
+	 */
 	@Test
 	public void lengthTest() {
 		
@@ -177,6 +186,40 @@ public class DictionaryBuilderTest {
 				.length(-1)
 				.build();
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+	}
+	
+	/**
+	 * Test for the DictionaryBuilder minLength method.
+	 */
+	@Test
+	public void minLenghtTest() {
+		
+		Dictionary testDict;
+		String[] words = {"ba", "baba", "bar", "bet", "car", "cba"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.minLength(3).build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 5);
+		assertFalse("dictionary has word wrong", testDict.hasWord("ba"));
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.minLength(4).build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
+		assertFalse("dictionary has word wrong", testDict.hasWord("bar"));
+		
+		// Bad input check
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.minLength(0)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.minLength(-1)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 6);
+		
 	}
 	
 }
