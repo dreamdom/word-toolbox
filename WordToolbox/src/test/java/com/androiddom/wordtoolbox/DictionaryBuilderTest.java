@@ -222,4 +222,34 @@ public class DictionaryBuilderTest {
 		
 	}
 	
+	/**
+	 * Test for the dictionaryBuilder complexity method.
+	 */
+	@Test
+	public void complexityTest() {
+		Dictionary testDict;
+		String[] words = {"why", "took", "book"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.complexity(5).build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.complexity(8).build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
+		
+		// Bad input check
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.complexity(0)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.complexity(-1)
+				.build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+		
+	}
+	
 }

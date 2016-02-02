@@ -28,6 +28,10 @@ public class WordComplexityTest {
 		input = "took";
 		expectedOutput = 8;
 		assertTrue("wordComplexity wrong", WordComplexity.getWordComplexity(input) == expectedOutput);
+		
+		input = "book";
+		expectedOutput = 8;
+		assertTrue("wordComplexity wrong", WordComplexity.getWordComplexity(input) == expectedOutput);
 
 		input = "complex";
 		expectedOutput = 16;
