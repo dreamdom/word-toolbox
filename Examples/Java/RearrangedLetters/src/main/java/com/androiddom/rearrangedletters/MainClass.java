@@ -36,7 +36,7 @@ public class MainClass {
 		System.out.println("Welcome to Rearranged Letters");
 
 		MutibleDictionary dictionary = new MutibleDictionary.Builder(new File("../../../DictionaryData/dictionary.txt"))
-				.filterPossesive()
+				.filterApostropheS()
 				.filterProper()
 				.minLength(4)
 				.build();

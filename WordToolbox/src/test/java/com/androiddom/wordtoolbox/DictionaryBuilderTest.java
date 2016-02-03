@@ -223,7 +223,7 @@ public class DictionaryBuilderTest {
 	}
 	
 	/**
-	 * Test for the dictionaryBuilder complexity method.
+	 * Test for the DictionaryBuilder complexity method.
 	 */
 	@Test
 	public void complexityTest() {
@@ -250,6 +250,19 @@ public class DictionaryBuilderTest {
 				.build();
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
 		
+	}
+	
+	/**
+	 * Test for the DictionaryBuilder filterPossessive method.
+	 */
+	@Test
+	public void filterPossessiveTest() {
+		Dictionary testDict;
+		String[] words = {"john", "john's", "steve's"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.filterApostropheS().build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
 	}
 	
 }

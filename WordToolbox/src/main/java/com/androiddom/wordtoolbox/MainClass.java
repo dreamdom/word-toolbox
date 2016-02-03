@@ -17,7 +17,7 @@ public class MainClass {
 		System.out.println(testDictionary.hasWord("the"));
 		System.out.println(testDictionary.hasWord("asdf"));
 
-		Dictionary test2 = new Dictionary.Builder(testDictionary).complexity(14).contains("j").filterPossesive()
+		Dictionary test2 = new Dictionary.Builder(testDictionary).complexity(14).contains("j").filterApostropheS()
 				.build();
 
 		System.out.println(test2.getRandomWord());
@@ -40,7 +40,7 @@ public class MainClass {
 		
 		Random random = new Random();
 		
-		Dictionary test4 = new Dictionary.Builder(testDictionary).filterPossesive().filterProper().minLength(4)
+		Dictionary test4 = new Dictionary.Builder(testDictionary).filterApostropheS().filterProper().minLength(4)
 				.complexity(16).build();
 		
 		long start = System.currentTimeMillis();

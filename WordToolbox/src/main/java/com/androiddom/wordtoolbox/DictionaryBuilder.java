@@ -220,7 +220,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * 
 	 * @return The Builder object.
 	 */
-	public DictionaryBuilder<T> filterPossesive() {
+	public DictionaryBuilder<T> filterApostropheS() {
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {
