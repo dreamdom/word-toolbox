@@ -265,4 +265,41 @@ public class DictionaryBuilderTest {
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
 	}
 	
+	/**
+	 * Test for the DictionaryBuilder anagrams method.
+	 */
+	@Test
+	public void anagramTest() {
+		Dictionary testDict;
+		String[] words = {"adverb", "race", "braved", "care"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.anagrams("adverb").build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.anagrams("care").build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
+		
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.anagrams("none").build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+		
+		// Bad input check
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.anagrams("").build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.anagrams(null).build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+		
+	}
+	
 }
