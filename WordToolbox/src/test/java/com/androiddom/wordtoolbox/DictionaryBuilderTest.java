@@ -302,4 +302,30 @@ public class DictionaryBuilderTest {
 		
 	}
 	
+	/**
+	 * Test for the DictionaryBuilder soundexEquals method.
+	 */
+	@Test
+	public void soundexEqualsTest() {
+		Dictionary testDict;
+		String[] words = {"a", "e", "b", "p"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.soundexEquals("0").build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
+		assertFalse("dictionary size wrong", testDict.hasWord("b"));
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.soundexEquals("1").build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
+		assertFalse("dictionary size wrong", testDict.hasWord("a"));
+		
+		// Bad input check
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.soundexEquals("z").build();
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+	}
+	
 }
