@@ -281,11 +281,11 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	}
 
 	/**
-	 * A rule to exclude words with non ascii characters.
+	 * A rule to exclude words with non ascii letters.
 	 * 
 	 * @return The Builder object.
 	 */
-	public DictionaryBuilder<T> removeNonAscii() {
+	public DictionaryBuilder<T> removeNonAsciiLetter() {
 		ruleList.add(new Rule() {
 			@Override
 			public boolean evaluate(String input) {

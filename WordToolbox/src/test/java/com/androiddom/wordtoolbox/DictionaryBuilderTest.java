@@ -313,19 +313,34 @@ public class DictionaryBuilderTest {
 				.soundexEquals("0").build();
 		
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
-		assertFalse("dictionary size wrong", testDict.hasWord("b"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("b"));
 		
 		testDict = new Dictionary.Builder(Arrays.asList(words))
 				.soundexEquals("1").build();
 		
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
-		assertFalse("dictionary size wrong", testDict.hasWord("a"));
+		assertFalse("dictionary hasword wrong", testDict.hasWord("a"));
 		
 		// Bad input check
 		
 		testDict = new Dictionary.Builder(Arrays.asList(words))
 				.soundexEquals("z").build();
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 0);
+	}
+	
+	/**
+	 * Test for the DictionaryBuilder removeNonAsciiLetter method.
+	 */
+	@Test
+	public void removeNonAsciiLetterTest() {
+		Dictionary testDict;
+		String[] words = {"adverb$", "race$", "braved", "care"};
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.removeNonAsciiLetter().build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
+		assertFalse("dictionary size wrong", testDict.hasWord("adverb$"));
+		
 	}
 	
 }
