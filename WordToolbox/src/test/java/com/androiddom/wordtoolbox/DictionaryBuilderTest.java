@@ -7,6 +7,8 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import com.androiddom.wordtoolbox.DictionaryBuilder.Rule;
+
 /**
  * A set of test cases for the DictionaryBuilder.
  *
@@ -339,7 +341,32 @@ public class DictionaryBuilderTest {
 				.removeNonAsciiLetter().build();
 		
 		assertTrue("dictionary size wrong", testDict.numberOfWords() == 2);
-		assertFalse("dictionary size wrong", testDict.hasWord("adverb$"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("adverb$"));
+		
+	}
+	
+	/**
+	 * Test for the DictionaryBuilder addRule method.
+	 */
+	@Test
+	public void addRuleTest() {
+		Dictionary testDict;
+		String[] words = {"adverb", "race", "braved", "care"};
+		
+		Rule startsWithA = new Rule() {
+			@Override
+			public boolean evaluate(String input) {
+				return input.startsWith("a");
+			}
+		};
+		
+		testDict = new Dictionary.Builder(Arrays.asList(words))
+				.addRule(startsWithA)
+				.build();
+		
+		assertTrue("dictionary size wrong", testDict.numberOfWords() == 1);
+		assertTrue("dictiony has word wrong", testDict.hasWord("adverb"));
+		assertFalse("dictionary has word wrong", testDict.hasWord("race"));
 		
 	}
 	
