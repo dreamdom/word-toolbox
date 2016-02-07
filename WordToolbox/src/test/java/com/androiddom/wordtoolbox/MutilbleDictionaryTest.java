@@ -17,12 +17,12 @@ public class MutilbleDictionaryTest {
 	/**
 	 * The dictionary object to use in the tests.
 	 */
-	private static MutibleDictionary testDictionary;
+	private static MutableDictionary testDictionary;
 	
 	@BeforeClass
 	public static void setUp() {
 		File file = new File("src/test/resources/testdictionary.txt");
-		testDictionary = new MutibleDictionary.Builder(file).build();
+		testDictionary = new MutableDictionary.Builder(file).build();
 	}
 	
 	/**

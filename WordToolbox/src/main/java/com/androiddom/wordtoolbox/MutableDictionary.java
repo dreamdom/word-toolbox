@@ -8,7 +8,7 @@ import java.util.Set;
  * A dictionary where words can be added and removed.
  *
  */
-public class MutibleDictionary extends Dictionary {
+public class MutableDictionary extends Dictionary {
 
 	/**
 	 * Package access constructor that takes a Set of words.
@@ -16,7 +16,7 @@ public class MutibleDictionary extends Dictionary {
 	 * @param words
 	 *            The set of words to use for the dictionary.
 	 */
-	MutibleDictionary(Set<String> words) {
+	MutableDictionary(Set<String> words) {
 		super(words);
 	}
 
@@ -55,7 +55,7 @@ public class MutibleDictionary extends Dictionary {
 	 * A class used to Build MutibleDictionary objects.
 	 *
 	 */
-	public static class Builder extends DictionaryBuilder<MutibleDictionary> {
+	public static class Builder extends DictionaryBuilder<MutableDictionary> {
 
 		/**
 		 * Public constructor.
@@ -99,13 +99,13 @@ public class MutibleDictionary extends Dictionary {
 		 * 
 		 * @return A dictionary object.
 		 */
-		public MutibleDictionary build() {
+		public MutableDictionary build() {
 
 			// Process any filters added to the builder
 			processRules();
 
 			// Create a new instance of a dictionary object
-			MutibleDictionary dictionary = new MutibleDictionary(builderWords);
+			MutableDictionary dictionary = new MutableDictionary(builderWords);
 
 			// Return the process dictionary
 			return dictionary;

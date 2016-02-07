@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Set;
 
 import com.androiddom.wordtoolbox.Dictionary;
-import com.androiddom.wordtoolbox.MutibleDictionary;
+import com.androiddom.wordtoolbox.MutableDictionary;
 
 /**
  * The Game class is used to manage a number of Rounds of the Rearranged letters
@@ -18,7 +18,7 @@ public class Game {
 	 */
 	private static final int BASE_WORD_COMPLEXITY = 6;
 
-	private MutibleDictionary gameDictionary;
+	private MutableDictionary gameDictionary;
 	private Dictionary fullDictionary;
 	private int gameLevel;
 	private Random random;
@@ -32,7 +32,7 @@ public class Game {
 	 *            What level the game should be played at. Higher levels
 	 *            correspond to a higher level of difficulty.
 	 */
-	public Game(MutibleDictionary dictionary, int gameLevel) {
+	public Game(MutableDictionary dictionary, int gameLevel) {
 		this.gameLevel = gameLevel;
 
 		// Initialize a random object
@@ -40,7 +40,7 @@ public class Game {
 
 		// Filter the dictionary down to the desired complexity
 		this.fullDictionary = dictionary;
-		this.gameDictionary = new MutibleDictionary.Builder(dictionary).complexity(gameLevelToWordComplexity()).build();
+		this.gameDictionary = new MutableDictionary.Builder(dictionary).complexity(gameLevelToWordComplexity()).build();
 	}
 
 	/**

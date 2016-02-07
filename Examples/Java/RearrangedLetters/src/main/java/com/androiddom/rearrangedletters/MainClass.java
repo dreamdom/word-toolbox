@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import com.androiddom.wordtoolbox.MutibleDictionary;
+import com.androiddom.wordtoolbox.MutableDictionary;
 import com.androiddom.wordtoolbox.util.StringUtils;
 
 /**
@@ -35,7 +35,7 @@ public class MainClass {
 
 		System.out.println("Welcome to Rearranged Letters");
 
-		MutibleDictionary dictionary = new MutibleDictionary.Builder(new File("../../../DictionaryData/dictionary.txt"))
+		MutableDictionary dictionary = new MutableDictionary.Builder(new File("../../../DictionaryData/dictionary.txt"))
 				.filterApostropheS()
 				.filterProper()
 				.minLength(4)
