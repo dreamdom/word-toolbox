@@ -198,6 +198,12 @@ public class StringUtils {
 	 * @return A List of Characters.
 	 */
 	public static List<Character> stringToCharacterList(String input) {
+		
+		// Bad input check
+		if(input == null) {
+			return null;
+		}
+		
 		List<Character> inputList = new ArrayList<Character>(input.length());
 
 		for (int i = 0; i < input.length(); i++) {

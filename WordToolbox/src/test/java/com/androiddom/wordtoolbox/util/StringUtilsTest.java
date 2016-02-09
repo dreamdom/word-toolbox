@@ -2,6 +2,7 @@ package com.androiddom.wordtoolbox.util;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.Random;
 
 import org.junit.Test;
@@ -235,6 +236,30 @@ public class StringUtilsTest {
 		input = "abc";
 		output = StringUtils.rearrangeString(input, null);
 		assertTrue("rearrangeString output incorrect", output == null);
+		
+	}
+	
+	/**
+	 * Test case for the StringUtils string to characterList function.
+	 */
+	@Test
+	public void stringToCharacterListTest() {
+		List<Character> charList;
+		
+		charList = StringUtils.stringToCharacterList("test");
+		
+		assertTrue("character at index wrong", charList.get(0) == 't');
+		assertTrue("character at index wrong", charList.get(1) == 'e');
+		assertTrue("character at index wrong", charList.get(2) == 's');
+		assertTrue("character at index wrong", charList.get(3) == 't');
+		
+		// bad input check
+		
+		charList = StringUtils.stringToCharacterList("");
+		assertTrue("charList size wrong", charList.size() == 0);
+		
+		charList = StringUtils.stringToCharacterList(null);
+		assertTrue("charList not null", charList == null);
 		
 	}
 
