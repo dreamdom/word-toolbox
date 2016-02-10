@@ -262,5 +262,29 @@ public class StringUtilsTest {
 		assertTrue("charList not null", charList == null);
 		
 	}
+	
+	/**
+	 * Test case for the reverseString method.
+	 */
+	@Test
+	public void reverseStringTest() {
+		String input;
+		String expected;
+		
+		input = "hello";
+		expected = "olleh";
+		
+		assertTrue("reverse wrong", expected.equals(StringUtils.reverseString(input)));
+		
+		// bad input check
+		
+		input = "";
+		expected = "";
+		assertTrue("reverse wrong", expected.equals(StringUtils.reverseString(input)));
+		
+		input = null;
+		assertTrue("reverse wrong", StringUtils.reverseString(input) == null);
+		
+	}
 
 }
