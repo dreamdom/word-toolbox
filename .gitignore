@@ -1,3 +1,6 @@
+## Local .gitignore
+TestingSandbox
+
 ## Java .gitignore
 
 *.class
