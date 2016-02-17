@@ -9,7 +9,8 @@ import java.util.Locale;
 import java.util.Set;
 
 import com.androiddom.wordtoolbox.analytics.WordComplexity;
-import com.androiddom.wordtoolbox.util.FileUtils;
+import com.androiddom.wordtoolbox.util.SimpleDictionaryFileUtils;
+import com.androiddom.wordtoolbox.util.SimpleDictionaryFileUtils.SimpleDictionaryData;
 import com.androiddom.wordtoolbox.util.PhoneticUtils;
 import com.androiddom.wordtoolbox.util.StringUtils;
 
@@ -25,6 +26,12 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 * A set of words used by the builder for building the Dictionary.
 	 */
 	protected Set<String> builderWords;
+	
+	/**
+	 * A header associated with the dictionary. May include notes or copyright
+	 * information.
+	 */
+	protected String builderHeader;
 
 	/**
 	 * A list of rules to apply when building the dictionary.
@@ -39,8 +46,10 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 */
 	public DictionaryBuilder(File file) {
 		// Load the dictionary from file or an existing dictionary
-		builderWords = new HashSet<String>();
-		FileUtils.loadSimpleDictionaryFileToSet(file, builderWords);
+		SimpleDictionaryData simpleDictionaryData = SimpleDictionaryFileUtils.loadSimpleDictionaryFileToSet(file);
+		builderWords = simpleDictionaryData.getWords();
+		builderHeader = simpleDictionaryData.getHeader();
+		
 	}
 
 	/**
@@ -51,6 +60,7 @@ public abstract class DictionaryBuilder<T extends Dictionary> {
 	 */
 	public DictionaryBuilder(Dictionary baseDictionary) {
 		builderWords = new HashSet<String>(baseDictionary.getWords());
+		builderHeader = baseDictionary.getHeader();
 	}
 
 	/**

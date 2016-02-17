@@ -16,8 +16,8 @@ public class MutableDictionary extends Dictionary {
 	 * @param words
 	 *            The set of words to use for the dictionary.
 	 */
-	MutableDictionary(Set<String> words) {
-		super(words);
+	MutableDictionary(Set<String> words, String header) {
+		super(words, header);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class MutableDictionary extends Dictionary {
 			processRules();
 
 			// Create a new instance of a dictionary object
-			MutableDictionary dictionary = new MutableDictionary(builderWords);
+			MutableDictionary dictionary = new MutableDictionary(builderWords, builderHeader);
 
 			// Return the process dictionary
 			return dictionary;

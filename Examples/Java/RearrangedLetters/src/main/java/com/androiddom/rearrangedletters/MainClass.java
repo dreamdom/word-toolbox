@@ -98,7 +98,7 @@ public class MainClass {
 			
 			// If they aren't already exiting, ask the user if they would like to play again
 			if(!exitGame) {
-				System.out.println("press enter to play again, or type'" + EXIT + "' to exit.");
+				System.out.println("press enter to play again, or type '" + EXIT + "' to exit.");
 				String input = scanner.nextLine();
 				if(input.equals(EXIT)) {
 					exitGame = true;

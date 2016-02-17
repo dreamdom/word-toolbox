@@ -15,6 +15,12 @@ import java.util.Set;
 public class Dictionary {
 
 	/**
+	 * A header for the Dictionary. May contain information about how the
+	 * dictionary was built, or copyright information, for example.
+	 */
+	protected String header;
+
+	/**
 	 * The set of words in the dictionary.
 	 */
 	protected Set<String> words;
@@ -25,7 +31,7 @@ public class Dictionary {
 	protected List<String> wordList;
 
 	/**
-	 * An object used to generate a psuedo random number. Used for getting a
+	 * An object used to generate a pseudo random number. Used for getting a
 	 * random word from the dictionary.
 	 */
 	protected Random random;
@@ -33,8 +39,10 @@ public class Dictionary {
 	/**
 	 * A package access constructor for the Dictionary object.
 	 */
-	Dictionary(Set<String> words) {
+	Dictionary(Set<String> words, String header) {
 		this.words = words;
+
+		this.header = header;
 
 		// Add all the words to the list, and shuffle it
 		wordList = new ArrayList<String>(words);
@@ -50,6 +58,17 @@ public class Dictionary {
 	 */
 	public Set<String> getWords() {
 		return Collections.unmodifiableSet(words);
+	}
+
+	/**
+	 * A method to get the header associated with this dictionary. The header
+	 * may include notes about the dictionary such as how it was built or
+	 * copyright information.
+	 * 
+	 * @return The header.
+	 */
+	public String getHeader() {
+		return header;
 	}
 
 	/**
@@ -138,7 +157,7 @@ public class Dictionary {
 			processRules();
 
 			// Create a new instance of a dictionary object
-			Dictionary dictionary = new Dictionary(builderWords);
+			Dictionary dictionary = new Dictionary(builderWords, builderHeader);
 
 			// Return the process dictionary
 			return dictionary;
